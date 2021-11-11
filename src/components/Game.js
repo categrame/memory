@@ -83,9 +83,15 @@ class Game extends React.Component {
             let cardProperty = this.generateColor();
             rowArray.push(cardProperty)
         }
+        let cardArray = [];
+        rowArray.map((n) => {
+            cardArray.push(
+                <Card cardProperties={n}/>
+            );
+        })
 
         return (<div className="row">
-        <Card cardProperties={rowArray}/>
+            {cardArray}
         </div>)
     }
 

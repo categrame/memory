@@ -21,13 +21,11 @@ class Card extends React.Component {
     }
 
     cardGenerator() {
-        let cardArray = [];
-        this.props.cardProperties.map((n) => {
-            this.id = n.id;
-            this.color = n.color;
-            cardArray.push(<div key={n.id} style={{backgroundColor: n.color}} className={this.state.fliped ? 'game-card col' : 'game-card fliped col'} onClick={this.clickEvent}></div>)
-        })
-        return cardArray;
+        this.id = this.props.cardProperties.id;
+        this.color = this.props.cardProperties.color;
+        
+        return <div key={this.props.cardProperties.id} style={{backgroundColor: this.props.cardProperties.color}} className={this.state.fliped ? 'game-card col' : 'game-card fliped col'} onClick={this.clickEvent}></div>
+
     }
     render(){
         return(
