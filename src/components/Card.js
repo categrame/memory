@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import '../index.css';
+import _ from 'lodash';
 
 class Card extends React.Component {
 
@@ -11,7 +12,7 @@ class Card extends React.Component {
             fliped: false,
             won: false,
         }
-        this.id = 0;
+        this.id = _.uniqueId("clr-");
         this.color = '';
         this.clickEvent = this.clickEvent.bind(this);
     }
@@ -32,10 +33,9 @@ class Card extends React.Component {
     }
 
     cardGenerator() {
-        this.id = this.props.cardProperties.id;
         this.color = this.props.cardProperties.color;
 
-        return <div key={this.props.cardProperties.id} style={{backgroundColor: this.props.cardProperties.color}} className={this.state.fliped ? 'game-card col' : 'game-card fliped col'} onClick={this.clickEvent}></div>
+        return <div key={this.id} style={{backgroundColor: this.props.cardProperties.color}} className={this.state.fliped ? 'game-card col' : 'game-card fliped col'} onClick={this.clickEvent}></div>
 
     }
 

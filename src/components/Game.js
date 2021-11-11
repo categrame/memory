@@ -123,7 +123,8 @@ class Game extends React.Component {
     }
 
     compareCard() {
-        if(this.card[0].id === this.card[1].id) {
+        console.log(this.card);
+        if(this.card[0].color === this.card[1].color && this.card[0].id !== this.card[1].id) {
             this.card.map((n) => {
                 n.setState({ 
                     won: true,
