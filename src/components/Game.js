@@ -10,67 +10,54 @@ class Game extends React.Component {
         this.card = [];
         this.colorArray = [
             {
-                id: 1,
                 color: "red",
                 left: 2,
             },
             {
-                id: 2,
                 color: "blue",
                 left: 2,
             },
             {
-                id: 3,
                 color: "green",
                 left: 2,
             },
             {
-                id: 4,
                 color: "pink",
                 left: 2,
             },
             {
-                id: 5,
                 color: "cyan",
                 left: 2,
             },
             {
-                id: 6,
                 color: "yellow",
                 left: 2,
             },
             {
-                id: 7,
                 color: "black",
                 left: 1,
             },
             {
-                id: 8,
                 color: "grey",
                 left: 2,
             },
             {
-                id: 9,
                 color: "purple",
                 left: 2,
             },
             {
-                id: 10,
                 color: "magenta",
                 left: 2,
             },
             {
-                id: 11,
                 color: "brown",
                 left: 2,
             },
             {
-                id: 12,
                 color: "LightSalmon",
                 left: 2,
             },
             {
-                id: 13,
                 color: "IndianRed",
                 left: 2,
             },
