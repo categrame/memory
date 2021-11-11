@@ -61,7 +61,7 @@ class Game extends React.Component {
             },
             {
                 id: 11,
-                color: "white",
+                color: "brown",
                 left: 2,
             },
             {
@@ -124,13 +124,19 @@ class Game extends React.Component {
 
     compareCard() {
         if(this.card[0].id === this.card[1].id) {
-            console.log("Carte pareil");
+            this.card.map((n) => {
+                n.setState({ 
+                    won: true,
+                });
+            })
             this.card = [];
         }
         else {
             setTimeout(() => {
                 this.card.map((n) => {
-                    n.setState({ fliped : false });
+                    n.setState({ 
+                        fliped : false,
+                    });
                 })
                 this.card = [];
             }

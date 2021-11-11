@@ -9,6 +9,7 @@ class Card extends React.Component {
         super(props);
         this.state = {
             fliped: false,
+            won: false,
         }
         this.id = 0;
         this.color = '';
@@ -16,10 +17,12 @@ class Card extends React.Component {
     }
 
     clickEvent(){
-        this.setState({ 
-            fliped: !this.state.fliped ,
-        });
-        this.props.gameCallback(this);
+        if(!this.state.won){
+            this.setState({ 
+                fliped: !this.state.fliped ,
+            });
+            this.props.gameCallback(this);
+        }
     }
 
     changeCardState() {
