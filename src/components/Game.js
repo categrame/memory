@@ -7,6 +7,7 @@ import Card from './Card';
 class Game extends React.Component {
     constructor(props){
         super(props);
+        this.card = [];
         this.colorArray = [
             {
                 id: 1,
@@ -86,7 +87,10 @@ class Game extends React.Component {
         let cardArray = [];
         rowArray.map((n) => {
             cardArray.push(
-                <Card cardProperties={n}/>
+                <Card 
+                    cardProperties={n}
+                    gameCallback={this.clickHandler}
+                />
             );
         })
 
@@ -108,6 +112,31 @@ class Game extends React.Component {
         }
 
         return randomColorObject;
+    }
+
+    clickHandler = (childData) => {
+        this.card.push(childData);
+        if(this.card.length > 1) {
+            this.compareCard();
+        }
+        
+    }
+
+    compareCard() {
+        if(this.card[0].id === this.card[1].id) {
+            console.log("Carte pareil");
+            this.card = [];
+        }
+        else {
+            setTimeout(() => {
+                this.card.map((n) => {
+                    n.setState({ fliped : false });
+                })
+                this.card = [];
+            }
+            , 1000)
+            
+        }
     }
 
     render() {

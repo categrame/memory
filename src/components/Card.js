@@ -16,17 +16,26 @@ class Card extends React.Component {
     }
 
     clickEvent(){
-        this.setState({ fliped: !this.state.fliped });
-        console.log(this.state.fliped);
+        this.setState({ 
+            fliped: !this.state.fliped ,
+        });
+        this.props.gameCallback(this);
+    }
+
+    changeCardState() {
+        this.setState({
+            fliped: !this.state.fliped
+        })
     }
 
     cardGenerator() {
         this.id = this.props.cardProperties.id;
         this.color = this.props.cardProperties.color;
-        
+
         return <div key={this.props.cardProperties.id} style={{backgroundColor: this.props.cardProperties.color}} className={this.state.fliped ? 'game-card col' : 'game-card fliped col'} onClick={this.clickEvent}></div>
 
     }
+
     render(){
         return(
             this.cardGenerator()
