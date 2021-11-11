@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import '../index.css';
 import Card from './Card';
+import Timer from './Timer';
 
 class Game extends React.Component {
     constructor(props){
@@ -136,7 +137,7 @@ class Game extends React.Component {
     render() {
         return (
             <div className="game-board container-fluid">
-                <h1>Memory game</h1>
+                <h1>Memory game <Timer/> </h1>
                 {this.rowGenerator()}
                 {this.rowGenerator()}
                 {this.rowGenerator()}
