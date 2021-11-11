@@ -9,12 +9,14 @@ class Card extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            fliped: false,
+            fliped: setTimeout(() => this.setState({ 
+                fliped: false,
+                clickEvent: this.clickEvent.bind(this)
+            }), 5000),
             won: false,
         }
         this.id = _.uniqueId("clr-");
         this.color = '';
-        this.clickEvent = this.clickEvent.bind(this);
     }
 
     clickEvent(){
@@ -35,7 +37,14 @@ class Card extends React.Component {
     cardGenerator() {
         this.color = this.props.cardProperties.color;
 
-        return <div key={this.id} style={{backgroundColor: this.props.cardProperties.color}} className={this.state.fliped ? 'game-card col' : 'game-card fliped col'} onClick={this.clickEvent}></div>
+        return (
+        <div 
+            key={this.id} 
+            style={{backgroundColor: this.props.cardProperties.color}} 
+            className={this.state.fliped ? 'game-card col' : 'game-card fliped col'}
+            onClick={this.state.clickEvent}
+        >
+         </div>)
 
     }
 
