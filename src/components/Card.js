@@ -10,13 +10,22 @@ class Card extends React.Component {
         this.state = {
             fliped: false,
         }
+        this.id = 0;
+        this.color = '';
+        this.clickEvent = this.clickEvent.bind(this);
+    }
+
+    clickEvent(){
+        this.setState({ fliped: !this.state.fliped });
+        console.log(this.state.fliped);
     }
 
     cardGenerator() {
         let cardArray = [];
         this.props.cardProperties.map((n) => {
-            console.log(n);
-            cardArray.push(<div key={n.id} style={{backgroundColor: n.color}} className='game-card col'></div>)
+            this.id = n.id;
+            this.color = n.color;
+            cardArray.push(<div key={n.id} style={{backgroundColor: n.color}} className={this.state.fliped ? 'game-card col' : 'game-card fliped col'} onClick={this.clickEvent}></div>)
         })
         return cardArray;
     }
