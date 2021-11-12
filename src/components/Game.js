@@ -12,6 +12,8 @@ class Game extends React.Component {
         this.card = [];
         this.changeAttemptCounter = React.createRef();
         this.isGameFinished = false;
+        this.allPointsToWin = 13;
+        this.actualPoints = 0;
         this.colorArray = [
             {
                 color: "Turquoise",
@@ -151,11 +153,32 @@ class Game extends React.Component {
 
     clickHandler = (childData) => {
         this.card.push(childData);
-        this.changeAttemptCounter.current.increaseCounter()
+        this.changeAttemptCounter.current.increaseCounter();
+        let checkBlackCard = this.checkIfItsBlackCard()
+        console.log(checkBlackCard);
+        if(this.actualPoints === this.allPointsToWin - 1 && checkBlackCard) {
+            console.log("gagné le jeu !");
+        }
+        else if(checkBlackCard){
+            console.log("perdu");
+        }
+        else {
+            console.log("Le jeu continue");
+        }
         if(this.card.length > 1) {
             this.compareCard();
         }
         
+    }
+
+    checkIfItsBlackCard(){
+        let cardCheck = false
+        this.card.map((n) => {
+            if(n.color === "black"){
+                cardCheck = true;
+            }
+        })
+        return cardCheck;
     }
 
     compareCard() {
@@ -169,6 +192,7 @@ class Game extends React.Component {
                     won: true,
                 });
             })
+            this.actualPoints = this.actualPoints +1;
             this.card = [];
         }
         else {
@@ -183,6 +207,7 @@ class Game extends React.Component {
             , 1000)
             
         }
+
     }
 
     returnRow() {
