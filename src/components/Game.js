@@ -4,11 +4,13 @@ import React from 'react';
 import '../index.css';
 import Card from './Card';
 import Timer from './Timer';
+import AttemptNumber from './AttempNumber';
 
 class Game extends React.Component {
     constructor(props){
         super(props);
         this.card = [];
+        this.changeAttemptCounter = React.createRef();
         this.isGameFinished = false;
         this.colorArray = [
             {
@@ -149,6 +151,7 @@ class Game extends React.Component {
 
     clickHandler = (childData) => {
         this.card.push(childData);
+        this.changeAttemptCounter.current.increaseCounter()
         if(this.card.length > 1) {
             this.compareCard();
         }
@@ -193,7 +196,8 @@ class Game extends React.Component {
     render() {
         return (
             <div className="game-board container-fluid">
-                <h1>Memory game <Timer gameFinished={this.isGameFinished}/> </h1>
+                <h1>Memory game <Timer gameFinished={this.isGameFinished}/></h1>
+                < AttemptNumber ref = {this.changeAttemptCounter} />
                 {this.returnRow()}
             </div>
         );
