@@ -9,20 +9,31 @@ class Timer extends React.Component {
         super(props);
         this.state = {
             secondLeft: 5,
+            gameStarted: false,
+            secondSpent: 0,
+            isTimerOver: false,
         }
     }
     
     componentDidMount() {
       this.updateInterval = setInterval(() => {
-        if(this.state.secondLeft <= 1){
-            this.componentWillUnmount()
+        if(this.state.secondLeft <= 1 || this.state.isTimerOver){
             this.setState({
-                secondLeft: "Here we go !"
+                secondLeft: "Here we go !",
+                gameStarted: true,
+                isTimerOver: true,
             })
         } else {
             this.setState({
                 secondLeft: this.state.secondLeft -1
             })
+        }
+        if(this.state.gameStarted){
+          this.setState({
+              secondSpent: this.state.secondSpent +1,
+          })
+        } else if(this.props.gameFinished) {
+          this.componentWillUnmount()
         }
       }, 1000);
     }
@@ -34,7 +45,12 @@ class Timer extends React.Component {
     render() {
       return (
         <span>
-        Second left before game : {this.state.secondLeft}
+          <span className={this.state.isTimerOver ? 'timer-board d-none' : 'timer-board'}>
+            Second left before game: {this.state.secondLeft}
+          </span>
+          <span className={this.state.gameStarted ? 'timer-board' : 'timer-board d-none'}>
+            Second passed: {this.state.secondSpent}
+          </span>
         </span>
       );
     }

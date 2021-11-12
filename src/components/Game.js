@@ -9,6 +9,7 @@ class Game extends React.Component {
     constructor(props){
         super(props);
         this.card = [];
+        this.isGameFinished = false;
         this.colorArray = [
             {
                 color: "Turquoise",
@@ -189,7 +190,7 @@ class Game extends React.Component {
     render() {
         return (
             <div className="game-board container-fluid">
-                <h1>Memory game <Timer/> </h1>
+                <h1>Memory game <Timer gameFinished={this.isGameFinished}/> </h1>
                 {this.returnRow()}
             </div>
         );
