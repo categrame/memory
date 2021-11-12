@@ -178,15 +178,19 @@ class Game extends React.Component {
         }
     }
 
+    returnRow() {
+        let rowArray = [];
+        for(let i = 0; i < 5; i++) {
+            rowArray.push(this.rowGenerator());
+        }
+        return rowArray;
+    }
+
     render() {
         return (
             <div className="game-board container-fluid">
                 <h1>Memory game <Timer/> </h1>
-                {this.rowGenerator()}
-                {this.rowGenerator()}
-                {this.rowGenerator()}
-                {this.rowGenerator()}
-                {this.rowGenerator()}
+                {this.returnRow()}
             </div>
         );
     }
