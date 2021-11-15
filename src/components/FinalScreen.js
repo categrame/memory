@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import '../index.css';
 
-class HallOfFame extends React.Component {
+class FinalScreen extends React.Component {
 
     constructor(props){
         super(props);
@@ -27,10 +27,15 @@ class HallOfFame extends React.Component {
                 scores.push(score);
             }
             let scoresMap = [];
-            scores.map(value => {
-                console.log(value);
+            scores.sort((a, b) => a.attempt > b.attempt ? 1 : -1)
+            .map((value, index) => {
                 scoresMap.push(
-                    <li>{value.attempt}</li>
+                    <tr>
+                        <th scope="row">{index +1}</th>
+                        <td>Anonymous</td>
+                        <td>{value.attempt}</td>
+                        <td>{value.secondPasses}</td>
+                    </tr>
                 )
             })
             this.setState({
@@ -44,11 +49,23 @@ class HallOfFame extends React.Component {
         <div>
             <h1>{this.props.winOrLose}</h1>
             <p>You did {this.props.finalData.attempt + 1} attempt(s) in {this.props.finalData.secondPasses} second(s).</p>
-            <ul>
-                {this.state.liArray}
-            </ul>
+            <h2>Hall of Fame</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nickname</th>
+                        <th scope="col">Number of Attemps</th>
+                        <th scope="col">Second passed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.yourScore}
+                    {this.state.liArray}
+                </tbody>
+            </table>
         </div>
       );
     }
   }
-export default HallOfFame; 
+export default FinalScreen; 

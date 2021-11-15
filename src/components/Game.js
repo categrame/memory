@@ -5,7 +5,7 @@ import '../index.css';
 import Card from './Card';
 import Timer from './Timer';
 import AttemptNumber from './AttempNumber';
-import HallOfFame from './HallOfFame';
+import FinalScreen from './FinalScreen';
 
 class Game extends React.Component {
     constructor(props){
@@ -22,6 +22,7 @@ class Game extends React.Component {
         this.actualPoints = 0;
         this.gameWinOrLose = "";
         this.finalData = {};
+        this.yourScore = [];
         this.colorArray = [
             {
                 color: "Turquoise",
@@ -163,7 +164,7 @@ class Game extends React.Component {
         this.card.push(childData);
         this.changeAttemptCounter.current.increaseCounter();
         let checkBlackCard = this.checkIfItsBlackCard()
-        console.log(checkBlackCard);
+
         if(this.actualPoints === this.allPointsToWin - 1 && checkBlackCard) {
             this.gameWinOrLose = "Win";
             this.setState({
@@ -174,6 +175,14 @@ class Game extends React.Component {
                 secondPasses: this.returnSecondPassed.current.returnSecondPassed(),
             }
             this.sendScore(data);
+            this.finalData = data;
+            this.yourScore = 
+            <tr>
+                <th scope="row">{data.id}</th>
+                <td>Anonymous</td>
+                <td>{data.attempt + 1}</td>
+                <td>{data.secondPasses}</td>
+            </tr>
         }
         else if(checkBlackCard){
             this.gameWinOrLose = "Lose";
@@ -184,6 +193,13 @@ class Game extends React.Component {
                 attempt: this.changeAttemptCounter.current.returnNbOfAttempt(),
                 secondPasses: this.returnSecondPassed.current.returnSecondPassed(),
             }
+            this.yourScore = 
+            <tr>
+                <th scope="row">Your score</th>
+                <td>Anonymous</td>
+                <td>{this.finalData.attempt + 1}</td>
+                <td>{this.finalData.secondPasses}</td>
+            </tr>
 
         }
         if(this.card.length > 1) {
@@ -258,9 +274,10 @@ class Game extends React.Component {
                 <h1>Memory game <Timer gameFinished={this.isGameFinished} ref = {this.returnSecondPassed}/></h1>
                 < AttemptNumber gameFinished={this.state.gameOver} ref = {this.changeAttemptCounter}/>
                 {this.state.gameOver ? 
-                    < HallOfFame 
+                    < FinalScreen 
                         winOrLose = {this.gameWinOrLose} 
                         finalData = {this.finalData}
+                        yourScore = {this.yourScore}
                     />
                     : this.returnRow()
                 }
