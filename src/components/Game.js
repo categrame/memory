@@ -5,6 +5,7 @@ import '../index.css';
 import Card from './Card';
 import Timer from './Timer';
 import AttemptNumber from './AttempNumber';
+import HallOfFame from './HallOfFame';
 
 class Game extends React.Component {
     constructor(props){
@@ -15,11 +16,12 @@ class Game extends React.Component {
         }
         this.card = [];
         this.changeAttemptCounter = React.createRef();
-        this.triggerModal = React.createRef();
+        this.returnSecondPassed = React.createRef();
         this.isGameFinished = false;
         this.allPointsToWin = 13;
         this.actualPoints = 0;
         this.gameWinOrLose = "";
+        this.finalData = {};
         this.colorArray = [
             {
                 color: "Turquoise",
@@ -167,12 +169,22 @@ class Game extends React.Component {
             this.setState({
                 gameOver: !this.state.gameOver,
             })
+            let data = {
+                attempt: this.changeAttemptCounter.current.returnNbOfAttempt(),
+                secondPasses: this.returnSecondPassed.current.returnSecondPassed(),
+            }
+            this.sendScore(data);
         }
         else if(checkBlackCard){
             this.gameWinOrLose = "Lose";
             this.setState({
                 gameOver: !this.state.gameOver,
             })
+            this.finalData = {
+                attempt: this.changeAttemptCounter.current.returnNbOfAttempt(),
+                secondPasses: this.returnSecondPassed.current.returnSecondPassed(),
+            }
+
         }
         if(this.card.length > 1) {
             this.compareCard();
@@ -219,6 +231,19 @@ class Game extends React.Component {
 
     }
 
+    sendScore(data) {
+        fetch(
+            process.env.REACT_APP_FIREBASE_LINK,
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+    }
+
     returnRow() {
         let rowArray = [];
         for(let i = 0; i < 5; i++) {
@@ -230,9 +255,15 @@ class Game extends React.Component {
     render() {
         return (
             <div className="game-board container-fluid">
-                <h1>Memory game <Timer gameFinished={this.isGameFinished}/></h1>
-                < AttemptNumber ref = {this.changeAttemptCounter}/>
-                {this.state.gameOver ? <h1>{this.gameWinOrLose}</h1> : this.returnRow()}
+                <h1>Memory game <Timer gameFinished={this.isGameFinished} ref = {this.returnSecondPassed}/></h1>
+                < AttemptNumber gameFinished={this.state.gameOver} ref = {this.changeAttemptCounter}/>
+                {this.state.gameOver ? 
+                    < HallOfFame 
+                        winOrLose = {this.gameWinOrLose} 
+                        finalData = {this.finalData}
+                    />
+                    : this.returnRow()
+                }
             </div>
         );
     }

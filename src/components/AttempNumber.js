@@ -14,8 +14,12 @@ class AttemptNumber extends React.Component {
 
     increaseCounter() {
         this.setState({
-            counter: this.state.counter +1,
+          counter: this.state.counter +1,
         })
+    }
+
+    returnNbOfAttempt() {
+      return this.state.counter;
     }
   
     render() {
