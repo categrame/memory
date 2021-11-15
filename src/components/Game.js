@@ -9,11 +9,17 @@ import AttemptNumber from './AttempNumber';
 class Game extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            gameOver: false,
+            isGameWin: false,
+        }
         this.card = [];
         this.changeAttemptCounter = React.createRef();
+        this.triggerModal = React.createRef();
         this.isGameFinished = false;
         this.allPointsToWin = 13;
         this.actualPoints = 0;
+        this.gameWinOrLose = "";
         this.colorArray = [
             {
                 color: "Turquoise",
@@ -157,13 +163,16 @@ class Game extends React.Component {
         let checkBlackCard = this.checkIfItsBlackCard()
         console.log(checkBlackCard);
         if(this.actualPoints === this.allPointsToWin - 1 && checkBlackCard) {
-            console.log("gagné le jeu !");
+            this.gameWinOrLose = "Win";
+            this.setState({
+                gameOver: !this.state.gameOver,
+            })
         }
         else if(checkBlackCard){
-            console.log("perdu");
-        }
-        else {
-            console.log("Le jeu continue");
+            this.gameWinOrLose = "Lose";
+            this.setState({
+                gameOver: !this.state.gameOver,
+            })
         }
         if(this.card.length > 1) {
             this.compareCard();
@@ -222,8 +231,8 @@ class Game extends React.Component {
         return (
             <div className="game-board container-fluid">
                 <h1>Memory game <Timer gameFinished={this.isGameFinished}/></h1>
-                < AttemptNumber ref = {this.changeAttemptCounter} />
-                {this.returnRow()}
+                < AttemptNumber ref = {this.changeAttemptCounter}/>
+                {this.state.gameOver ? <h1>{this.gameWinOrLose}</h1> : this.returnRow()}
             </div>
         );
     }
