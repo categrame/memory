@@ -3,10 +3,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Game from './components/Game'
+import MainScreen from './components/MainScreen'
 
 
 ReactDOM.render(
-    <Game />,
+    <MainScreen />,
     document.getElementById('root')
 );
