@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
-import '../index.css';
+import '../index.scss';
 import _ from 'lodash';
 
 class Card extends React.Component {

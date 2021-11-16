@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
-import '../index.css';
+import '../index.scss';
 import Card from './Card';
 import Timer from './Timer';
 import AttemptNumber from './AttempNumber';
