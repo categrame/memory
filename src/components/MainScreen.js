@@ -12,7 +12,7 @@ class MainScreen extends React.Component {
             isGameStarted: false,
             displayRules: false,
             displayHallOfFame: false,
-            nickname: '',
+            nickname: localStorage.getItem('memory-nickname'),
         }
         this.handleClickPlay = this.handleClickPlay.bind(this);
         this.displayRules = this.displayRules.bind(this);
@@ -25,6 +25,7 @@ class MainScreen extends React.Component {
                     <label>Enter a nickname (leave blank to play as an anonymous)</label>
                     <input
                         onChange={evt => this.getNickname(evt)}
+                        defaultValue={this.state.nickname}
                     />
                 </li>
                 <li><button className="btn btn-primary" onClick={this.displayRules}>Rules</button></li>
@@ -33,6 +34,8 @@ class MainScreen extends React.Component {
         </div>
     }
     handleClickPlay() {
+        localStorage.removeItem('memory-nickname');
+        localStorage.setItem('memory-nickname', this.state.nickname);
         this.setState({
             isGameStarted: !this.state.isGameStarted,
         })
