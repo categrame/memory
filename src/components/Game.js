@@ -23,6 +23,7 @@ class Game extends React.Component {
         this.gameWinOrLose = "";
         this.finalData = {};
         this.yourScore = [];
+        this.nickname = this.props.nickname;
         this.colorArray = [
             {
                 color: "Turquoise",
@@ -178,8 +179,8 @@ class Game extends React.Component {
             this.finalData = data;
             this.yourScore = 
             <tr>
-                <th scope="row">{data.id}</th>
-                <td>Anonymous</td>
+                <th scope="row">Your score</th>
+                <td>{this.nickname ? this.nickname : "Anonymous"}</td>
                 <td>{data.attempt + 1}</td>
                 <td>{data.secondPasses}</td>
             </tr>
@@ -196,7 +197,7 @@ class Game extends React.Component {
             this.yourScore = 
             <tr>
                 <th scope="row">Your score</th>
-                <td>Anonymous</td>
+                <td>{this.nickname ? this.nickname : "Anonymous"}</td>
                 <td>{this.finalData.attempt + 1}</td>
                 <td>{this.finalData.secondPasses}</td>
             </tr>

@@ -12,6 +12,7 @@ class MainScreen extends React.Component {
             isGameStarted: false,
             displayRules: false,
             displayHallOfFame: false,
+            nickname: '',
         }
         this.handleClickPlay = this.handleClickPlay.bind(this);
         this.displayRules = this.displayRules.bind(this);
@@ -19,7 +20,13 @@ class MainScreen extends React.Component {
         <div>
             <h2>Main Menu</h2>
             <ul>
-                <li><button className="btn btn-primary" onClick={this.handleClickPlay}>Play</button></li>
+                <li>
+                    <button className="btn btn-primary" onClick={this.handleClickPlay}>Play</button>
+                    <label>Enter a nickname (leave blank to play as an anonymous)</label>
+                    <input
+                        onChange={evt => this.getNickname(evt)}
+                    />
+                </li>
                 <li><button className="btn btn-primary" onClick={this.displayRules}>Rules</button></li>
                 <li><button className="btn btn-primary">Hall of Fame</button></li>
             </ul>
@@ -29,6 +36,12 @@ class MainScreen extends React.Component {
         this.setState({
             isGameStarted: !this.state.isGameStarted,
         })
+    }
+
+    getNickname(evt) {
+        this.setState({
+            nickname: evt.target.value
+        });
     }
 
     displayRules() {
@@ -41,7 +54,7 @@ class MainScreen extends React.Component {
     render() {
       return (
           <span>
-              {this.state.isGameStarted ? <Game /> : this.defaultDisplay}
+              {this.state.isGameStarted ? <Game nickname={this.state.nickname}/> : this.defaultDisplay}
               <span className={this.state.displayRules ? '' : 'd-none'}>Here are the rules</span>
           </span>
          
