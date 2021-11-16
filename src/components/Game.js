@@ -172,6 +172,7 @@ class Game extends React.Component {
                 gameOver: !this.state.gameOver,
             })
             let data = {
+                nickname: this.nickname ? this.nickname : "Anonymous",
                 attempt: this.changeAttemptCounter.current.returnNbOfAttempt(),
                 secondPasses: this.returnSecondPassed.current.returnSecondPassed(),
             }

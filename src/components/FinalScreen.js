@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import '../index.css';
+import MainScreen from './MainScreen';
 
 class FinalScreen extends React.Component {
 
@@ -32,7 +33,7 @@ class FinalScreen extends React.Component {
                 scoresMap.push(
                     <tr>
                         <th scope="row">{index +1}</th>
-                        <td>Anonymous</td>
+                        <td>{value.nickname ? value.nickname : "Anonymous"}</td>
                         <td>{value.attempt}</td>
                         <td>{value.secondPasses}</td>
                     </tr>
@@ -42,6 +43,10 @@ class FinalScreen extends React.Component {
                 liArray: scoresMap,
             })
         })
+    }
+
+    playAgainHandler() {
+        window.location.reload(false);
     }
     
     render() {
@@ -64,6 +69,7 @@ class FinalScreen extends React.Component {
                     {this.state.liArray}
                 </tbody>
             </table>
+            <button onClick={this.playAgainHandler}>Play again</button>
         </div>
       );
     }
