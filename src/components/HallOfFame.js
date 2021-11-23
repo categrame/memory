@@ -10,6 +10,10 @@ class HallOfFame extends React.Component {
         this.state = {
             liArray: [],
         };
+        this.emptyScore = 
+            <tr>
+                <th colspan="100%" scope="row">No score yet ! Be the first.</th>
+            </tr>
     }
 
     componentDidMount() {
@@ -79,7 +83,7 @@ class HallOfFame extends React.Component {
                 </thead>
                 <tbody>
                     {this.props.yourScore ? this.props.yourScore : ''}
-                    {this.state.liArray}
+                    {(this.state.liArray.length > 0) ? this.state.liArray : this.emptyScore}
                 </tbody>
             </table>
             <button className='btn btn-info' onClick={this.playAgainHandler}>{this.props.playAgain ? 'Play Again' : 'Back to main menu'}</button>
