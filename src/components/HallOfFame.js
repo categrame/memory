@@ -12,7 +12,7 @@ class HallOfFame extends React.Component {
         };
         this.emptyScore = 
             <tr>
-                <th colspan="100%" scope="row">No score yet ! Be the first.</th>
+                <th colSpan="100%" scope="row">No score yet ! Be the first.</th>
             </tr>
     }
 
@@ -48,9 +48,9 @@ class HallOfFame extends React.Component {
                     return -1;
                 }
             })
-            .map((value, index) => {
+            .forEach((value, index) => {
                 scoresMap.push(
-                    <tr>
+                    <tr key={index +1}>
                         <th scope="row">{index +1}</th>
                         <td>{value.nickname ? value.nickname : "Anonymous"}</td>
                         <td>{value.attempt}</td>
@@ -72,7 +72,7 @@ class HallOfFame extends React.Component {
       return (
         <div>
             <h2 className="haf-title">Hall of Fame</h2>
-            <table class="table styled-table">
+            <table className="table styled-table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -82,7 +82,7 @@ class HallOfFame extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.yourScore ? this.props.yourScore : ''}
+                    {this.props.yourScore ? this.props.yourScore : null}
                     {(this.state.liArray.length > 0) ? this.state.liArray : this.emptyScore}
                 </tbody>
             </table>

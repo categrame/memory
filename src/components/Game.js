@@ -132,7 +132,7 @@ class Game extends React.Component {
             rowArray.push(cardProperty)
         }
         let cardArray = [];
-        rowArray.map((n) => {
+        rowArray.forEach((n) => {
             cardArray.push(
                 <Card 
                     cardProperties={n}
@@ -212,7 +212,7 @@ class Game extends React.Component {
 
     checkIfItsBlackCard(){
         let cardCheck = false
-        this.card.map((n) => {
+        this.card.forEach((n) => {
             if(n.color === "black"){
                 cardCheck = true;
             }
@@ -226,7 +226,7 @@ class Game extends React.Component {
             return;
         }
         if(this.card[0].color === this.card[1].color && this.card[0].id !== this.card[1].id) {
-            this.card.map((n) => {
+            this.card.forEach((n) => {
                 n.setState({ 
                     won: true,
                 });
@@ -236,7 +236,7 @@ class Game extends React.Component {
         }
         else {
             setTimeout(() => {
-                this.card.map((n) => {
+                this.card.forEach((n) => {
                     n.setState({ 
                         fliped : false,
                     });

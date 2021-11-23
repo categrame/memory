@@ -14,7 +14,6 @@ class MainScreen extends React.Component {
             displayRules: false,
             displayHallOfFame: false,
             nickname: localStorage.getItem('memory-nickname'),
-            displayHallOfFame: false,
         }
         this.handleClickPlay = this.handleClickPlay.bind(this);
         this.handleHallOfFame = this.handleHallOfFame.bind(this);
@@ -25,16 +24,16 @@ class MainScreen extends React.Component {
                 <div className="button-main-menu col-12 play-col">
                     <div className='row center-row'>
                         <div className='col-md-6 col-sm-12 center-col'>
-                            <a className='play-link' href="#" onClick={this.handleClickPlay}>Play</a>
+                            <a className='play-link' href="/#" onClick={this.handleClickPlay}>Play</a>
                         </div>
                         <div className='col-md-6 col-sm-12 center-col'>
                             <label className="input">
-                                <input class="input__field" 
+                                <input className="input__field" 
                                     onChange={evt => this.getNickname(evt)} 
                                     defaultValue={this.state.nickname} 
                                     type="text" 
                                     placeholder=" " />
-                                <span class="input__label">Your nickname</span>
+                                <span className="input__label">Your nickname</span>
                             </label>
                         </div>
                     </div>
@@ -59,7 +58,7 @@ class MainScreen extends React.Component {
             </div>
             <div className='row row-main-menu mx-auto'>
                 <div className="button-main-menu col-12 haf-col">
-                    <a href="#" onClick={this.handleHallOfFame} className='haf-link'>Hall of Fame</a>
+                    <a href="/#" onClick={this.handleHallOfFame} className='haf-link'>Hall of Fame</a>
                     <p className='haf-line'>Click to see the best player of this memory game</p>
                 </div>
             </div>
@@ -88,10 +87,10 @@ class MainScreen extends React.Component {
     render() {
       return (
           <>
-            <span className={this.state.displayHallOfFame ? 'd-none' : ''}>
+            <span className={this.state.displayHallOfFame ? 'd-none' : null}>
                 {this.state.isGameStarted ? <Game nickname={this.state.nickname}/> : this.defaultDisplay}
             </span>
-            <span className={this.state.displayHallOfFame ? '' : 'd-none'}>
+            <span className={this.state.displayHallOfFame ? null : 'd-none'}>
                 <HallOfFame />
             </span>
           </>
