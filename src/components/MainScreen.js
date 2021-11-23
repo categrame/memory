@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import '../index.scss';
 import Game from './Game';
+import HallOfFame from './HallOfFame';
 
 class MainScreen extends React.Component {
 
@@ -13,9 +14,10 @@ class MainScreen extends React.Component {
             displayRules: false,
             displayHallOfFame: false,
             nickname: localStorage.getItem('memory-nickname'),
+            displayHallOfFame: false,
         }
         this.handleClickPlay = this.handleClickPlay.bind(this);
-        this.displayRules = this.displayRules.bind(this);
+        this.handleHallOfFame = this.handleHallOfFame.bind(this);
         this.defaultDisplay = 
         <div className="main-menu container-fluid">
             <h1>MEMORY GAME</h1>
@@ -57,7 +59,7 @@ class MainScreen extends React.Component {
             </div>
             <div className='row row-main-menu mx-auto'>
                 <div className="button-main-menu col-12 haf-col">
-                    <a href="#" className='haf-link'>Hall of Fame</a>
+                    <a href="#" onClick={this.handleHallOfFame} className='haf-link'>Hall of Fame</a>
                     <p className='haf-line'>Click to see the best player of this memory game</p>
                 </div>
             </div>
@@ -71,23 +73,29 @@ class MainScreen extends React.Component {
         })
     }
 
+    handleHallOfFame() {
+        this.setState({
+            displayHallOfFame: !this.state.displayHallOfFame
+        })
+    }
+
     getNickname(evt) {
         this.setState({
             nickname: evt.target.value
         });
     }
-
-    displayRules() {
-        this.setState({
-            displayRules: !this.state.displayRules
-        })
-    }
     
     render() {
       return (
-          <span>
-              {this.state.isGameStarted ? <Game nickname={this.state.nickname}/> : this.defaultDisplay}
-          </span>
+          <>
+            <span className={this.state.displayHallOfFame ? 'd-none' : ''}>
+                {this.state.isGameStarted ? <Game nickname={this.state.nickname}/> : this.defaultDisplay}
+            </span>
+            <span className={this.state.displayHallOfFame ? '' : 'd-none'}>
+                <HallOfFame />
+            </span>
+          </>
+          
          
       );
     }
