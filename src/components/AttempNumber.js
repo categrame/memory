@@ -24,8 +24,8 @@ class AttemptNumber extends React.Component {
   
     render() {
       return (
-        <span>
-          Number of attempt : {this.state.counter}
+        <span className='nb-attempt'>
+           || Number of attempt : {this.state.counter}
         </span>
       );
     }

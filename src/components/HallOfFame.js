@@ -67,8 +67,8 @@ class HallOfFame extends React.Component {
     render() {
       return (
         <div>
-            <h2>Hall of Fame</h2>
-            <table class="table">
+            <h2 className="haf-title">Hall of Fame</h2>
+            <table class="table styled-table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -82,7 +82,7 @@ class HallOfFame extends React.Component {
                     {this.state.liArray}
                 </tbody>
             </table>
-            <button onClick={this.playAgainHandler}>{this.props.playAgain ? 'Play Again' : 'Back to main menu'}</button>
+            <button className='btn btn-info' onClick={this.playAgainHandler}>{this.props.playAgain ? 'Play Again' : 'Back to main menu'}</button>
         </div>
       );
     }

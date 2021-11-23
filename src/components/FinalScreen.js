@@ -6,16 +6,11 @@ import HallOfFame from './HallOfFame';
 
 class FinalScreen extends React.Component {
 
-    constructor(props){
-        super(props);
-    }
-
-    
     render() {
       return (
         <>
             <h1>{this.props.winOrLose}</h1>
-            <p>You did {this.props.finalData.attempt + 1} attempt(s) in {this.props.finalData.secondPasses} second(s).</p>
+            <p className='resume-score'>You did {this.props.finalData.attempt + 1} attempt(s) in {this.props.finalData.secondPasses} second(s).</p>
             <HallOfFame 
                 yourScore={this.props.yourScore}
                 playAgain={true}

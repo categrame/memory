@@ -273,8 +273,8 @@ class Game extends React.Component {
     render() {
         return (
             <div className="game-board container-fluid">
-                <h1>Memory game <Timer gameFinished={this.isGameFinished} ref = {this.returnSecondPassed}/></h1>
-                < AttemptNumber gameFinished={this.state.gameOver} ref = {this.changeAttemptCounter}/>
+                <Timer gameFinished={this.isGameFinished} ref = {this.returnSecondPassed}/>
+                <AttemptNumber gameFinished={this.state.gameOver} ref = {this.changeAttemptCounter}/>
                 {this.state.gameOver ? 
                     < FinalScreen 
                         winOrLose = {this.gameWinOrLose} 

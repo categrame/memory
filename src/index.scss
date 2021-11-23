@@ -31,18 +31,13 @@ h1 {
     margin-right: 2.5px;
     width: 11%;
     position: relative;
+
+    @media only screen and (max-width:425px){
+        width:18%;
+    }
+
 }
 
-@media (min-width:480px) {
-    .game-card {
-        border: solid 4px white;
-        border-radius: 15px;
-        height: 100%;
-        margin-left: 2.5px;
-        margin-right: 2.5px;
-        width: 15%;
-    }
-}
 
 .row {
     margin-top: 5px;
@@ -60,6 +55,11 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width:425px){
+        width:30px;
+        height:30px;
+    }
+
 }
 
 .card-symbol {
@@ -67,6 +67,10 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width:425px){
+        width:30px;
+        height:30px;
+    }
 }
 
 .button-main-menu {
@@ -93,6 +97,14 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media only screen and (max-width:460px){
+        font-size: 15vw;
+    }
+
+    @media only screen and (min-width:481px){
+        font-size: 9vw;
+    }
 }
 
 .haf-link {
@@ -100,6 +112,43 @@ h1 {
     text-decoration: none;
     color:white;
     font-family: 'Abel', sans-serif;
+}
+
+.haf-title {
+    color:white;
+    font-family: 'Abel', sans-serif;
+    text-align: center;
+
+    @media only screen and (max-width:460px){
+        font-size: 15vw;
+    }
+
+    @media only screen and (min-width:481px){
+        font-size: 6vw;
+    }
+}
+
+.nb-attempt, .seconds {
+    color:white;
+    font-family: 'Abel', sans-serif;
+
+    @media only screen and (max-width:460px){
+        font-size: 5vw;
+    }
+
+    @media only screen and (min-width:481px){
+        font-size: 2vw;
+    }
+
+}
+
+.resume-score {
+    color:white;
+    font-family: 'Abel', sans-serif;
+    font-size: 1vw;
+    @media (max-width:480px) {
+        font-size: 3vw;
+    }
 }
 
 .rules-col {
@@ -126,16 +175,25 @@ h1 {
 .rules-text {
     color:white;
     font-family: 'Abel', sans-serif;
-    font-size: 1vw;
     text-align: justify;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    @media (max-width: 576px) {
-        font-size:2.2vw;
+    @media only screen and (max-width:460px){
+        font-size: 3.3vw;
+        width: 90%;
     }
+
+    @media only screen and (min-width:481px){
+        font-size: 1vw;
+    }
+}
+
+.haf-line {
+    color:white;
+    font-family: 'Abel', sans-serif;
 }
 
 .input {
@@ -179,9 +237,42 @@ h1 {
         }
       }
     }
-  }
+}
   
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: 'Abel', sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
+    thead tr {
+        background-color: #009879;
+        color: white;
+        text-align: left;
+    }
+
+    th,td {
+        padding: 12px 15px;
+        color:black;
+
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #dddddd;
+        background-color: #f3f3f3;
+    }
+
+    tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+}
 
 
 

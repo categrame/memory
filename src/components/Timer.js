@@ -50,11 +50,11 @@ class Timer extends React.Component {
     render() {
       return (
         <span>
-          <span className={this.state.isTimerOver ? 'timer-board d-none' : 'timer-board'}>
-            Second left before game: {this.state.secondLeft}
+          <span className={this.state.isTimerOver ? 'timer-board d-none' : 'timer-board seconds'}>
+            Second left before game: {this.state.secondLeft} ||
           </span>
-          <span className={this.state.gameStarted ? 'timer-board' : 'timer-board d-none'}>
-            Second passed: {this.state.secondSpent}
+          <span className={this.state.gameStarted ? 'timer-board seconds' : 'timer-board d-none'}>
+            Second passed: {this.state.secondSpent}  ||
           </span>
         </span>
       );
