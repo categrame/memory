@@ -27,7 +27,23 @@ class HallOfFame extends React.Component {
                 scores.push(score);
             }
             let scoresMap = [];
-            scores.sort((a, b) => a.attempt > b.attempt ? 1 : -1)
+
+            scores.sort((a, b) => {
+                if(a.attempt === b.attempt) {
+                    if(a.secondPasses > b.secondPasses){
+                        return 1;
+                    }
+                    else {
+                        return -1;
+                    }
+                }
+                else if(a.attempt > b.attempt) {
+                    return 1
+                }
+                else {
+                    return -1;
+                }
+            })
             .map((value, index) => {
                 scoresMap.push(
                     <tr>
